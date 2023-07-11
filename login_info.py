@@ -67,8 +67,7 @@ def menu(user_login):
    choice = input('Pick a number: ')
    user_data = login_info[user_login]
    if choice == '3': main()
-   elif choice == '1': show_details(user_data)
-   elif choice == '2': modify_details(user_data)
+   elif choice == '2': pass
    else: print('Invalid Choice !')
    menu(user_login)
 
