@@ -39,18 +39,6 @@ def inputs(txt='', user=None, password=None, school=None, email=None):
    if email: email = input(f'Enter {txt}email address: ').strip().lower()
    return (user, password, school, email)
 
-def login(db, attempts=0):
-   if attempts < 3:
-      user_login, _, _, _ = inputs(user=True)
-      _, pass_login, _, _ = inputs(password=True)
-      if user_login in db and pass_login == db[user_login]['pass']:
-         print(f'Welcome {user_login.capitalize()}\n')
-         return user_login
-      else:
-         print('Invalid Info !')
-         login(db, attempts+1)
-   else: main()
-
 def sign_up(db):
    user_login, _, _, _ = inputs(user=True)
    if user_login not in db:
