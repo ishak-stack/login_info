@@ -32,13 +32,6 @@ def unique_id(db, a=1):
       return unique_id(db, a)
 print(unique_id(login_info))
 
-def inputs(txt='', user=None, password=None, school=None, email=None):
-   if user: user = input('Enter your username: ').strip().lower()
-   if password: password = input('Enter your password: ').strip()
-   if school: school = input(f'Enter {txt}school name: ').strip().title()
-   if email: email = input(f'Enter {txt}email address: ').strip().lower()
-   return (user, password, school, email)
-
 def login(db, attempts=0):
    if attempts < 3:
       user_login, _, _, _ = inputs(user=True)
