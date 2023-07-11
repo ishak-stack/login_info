@@ -19,19 +19,6 @@ login_info = {
    }
 }
 
-def unique_id(db, a=1):
-   from random import shuffle, choice
-   id_lst = [choice(range(1, 10)) for _ in range(a)]
-   shuffle(id_lst)
-   id_num = int(''.join([str(s) for s in id_lst]))
-   id_dict = [user['id'] for user in db.values()]
-   if len(id_dict) < int('9'*a):
-      return unique_id(db) if id_num in id_dict else id_num
-   else:
-      a += 1
-      return unique_id(db, a)
-print(unique_id(login_info))
-
 def inputs(txt='', user=None, password=None, school=None, email=None):
    if user: user = input('Enter your username: ').strip().lower()
    if password: password = input('Enter your password: ').strip()
