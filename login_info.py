@@ -10,12 +10,6 @@ login_info = {
       'pass': '1222',
       'school': 'aymen school',
       'email': 'aymen@mail.com'
-   },
-   'ishak': {
-      'id': 3,
-      'pass': '1333',
-      'school': 'ishak school',
-      'email': 'ishak@mail.com'
    }
 }
 
