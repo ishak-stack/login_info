@@ -19,7 +19,6 @@ login_info = {
    }
 }
 
-
 def unique_id(db, a=1):
    from random import shuffle, choice
    id_lst = [choice(range(1, 10)) for _ in range(a)]
@@ -33,14 +32,12 @@ def unique_id(db, a=1):
       return unique_id(db, a)
 print(unique_id(login_info))
 
-
 def inputs(txt='', user=None, password=None, school=None, email=None):
-   user = input('Enter your username: ').strip().lower() if user else ''
-   password = input('Enter your password: ').strip() if password else ''
-   school = input(f'Enter {txt}school name: ').strip().title() if school else ''
-   email = input(f'Enter {txt}email address: ').strip().lower() if email else ''
+   if user: user = input('Enter your username: ').strip().lower()
+   if password: password = input('Enter your password: ').strip()
+   if school: school = input(f'Enter {txt}school name: ').strip().title()
+   if email: email = input(f'Enter {txt}email address: ').strip().lower()
    return (user, password, school, email)
-
 
 def login(db, attempts=0):
    if attempts < 3:
@@ -54,7 +51,6 @@ def login(db, attempts=0):
          login(db, attempts+1)
    else: main()
 
-
 def sign_up(db):
    user_login, _, _, _ = inputs(user=True)
    if user_login not in db:
@@ -62,13 +58,13 @@ def sign_up(db):
       db[user_login] = {'id': unique_id(db),'pass': pass_login, 'school': school, 'email': email}
       print('Successfully registered !')
       return user_login
-   else: print('Username already exists !')
-
+   else:
+      print('Username already exists !')
+      main()
 
 def show_details(user_data):
    print('Details '.ljust(21, '='))
    print(f'ID: {user_data["id"]}\nSchool: {user_data["school"].title()}\nEmail: {user_data["email"]}')
-
 
 def modify_details(user_data):
    _, _, school, email = inputs('new ', school=True, email=True)
@@ -77,7 +73,6 @@ def modify_details(user_data):
       user_data['school'], user_data['email'] = school, email
       print('Your info has been modified successfully!')
    else: print('Invalid Password !')
-
 
 def menu(user_login):
    print('1. Show details\n2. Modify infos\n3. Logout')
@@ -89,16 +84,15 @@ def menu(user_login):
    else: print('Invalid Choice !')
    menu(user_login)
 
-
 print(f'Welcome to login system\n{"="*23}')
 def main():
-   print('1. Login\n2. Sign Up\n3. Exit')
+   print('1. Sign Up\n2. Login\n3. Exit')
    choice = input('Pick a number: ')
    if choice == '1':
-      user_login = login(login_info)
+      user_login = sign_up(login_info)
       menu(user_login)
    elif choice == '2':
-      user_login = sign_up(login_info)
+      user_login = login(login_info)
       menu(user_login)
    elif choice == '3': exit()
    else: print('Invalid Choice !')
